@@ -1,9 +1,11 @@
 package LibraryManagementSystem;
 
-import LibraryManagementSystem.PresentationLayer.ScreenOrchestrator;
-
 public class Program {
     public static void main(String[] args) {
-        ScreenOrchestrator.startApp();
+        LibraryManagementApplication kitaabGhar = new LibraryManagementApplication();
+        kitaabGhar.startApp();
+        kitaabGhar.login();
+        kitaabGhar.chooseFlow();
+        var branch = kitaabGhar.getBranch();
     }
 }

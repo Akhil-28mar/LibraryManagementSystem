@@ -1,13 +1,18 @@
 package LibraryManagementSystem.Utilities;
 
 import java.util.Scanner;
-import LibraryManagementSystem.Database.Users;
-import LibraryManagementSystem.Models.Patron;
+import LibraryManagementSystem.Models.LoginCredentialModel;
 
 public class IOUtility {
     private static Scanner scanner;
 
+    public static void showWelcomeMessage() {
+        System.out.println("Welcome to Library Management System");
+        System.out.println();
+    }
+
     public static <T> T getInputOptionValue(T[] options) {
+        showOptions(options);
         scanner = new Scanner(System.in);
 
         int response = scanner.nextInt();
@@ -20,7 +25,7 @@ public class IOUtility {
         return options[response-1];
     }
 
-    public static <T> void showOptions(T[] options) {
+    private static <T> void showOptions(T[] options) {
         System.out.println("Please select one of the following options: ");
         int optionNumber = 1;
         for (T option : options) {
@@ -29,7 +34,7 @@ public class IOUtility {
         }
     }
 
-    public static Patron login() {
+    public static LoginCredentialModel getloginCredentials() {
         scanner = new Scanner(System.in);       
         System.out.print("Enter your username: ");
         String username = scanner.next();
@@ -37,11 +42,10 @@ public class IOUtility {
         String password = scanner.next();
         scanner.close();
 
-        var loginUser = Users.getloginUser(username, password);
-        if (loginUser == null) {
-            System.out.println("Invalid username or Password");
-            return null;
-        }
-        return loginUser;
+        return new LoginCredentialModel(username, password);
+    }
+
+    public static void showMessage(String message) {
+        System.out.println(message);
     }
 }

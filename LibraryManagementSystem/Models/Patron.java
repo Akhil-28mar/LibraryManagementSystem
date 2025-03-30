@@ -1,12 +1,30 @@
 package LibraryManagementSystem.Models;
 
-public abstract class Patron {
-    public int userId;
-    public String username;
-    public String name;
-    public String password;
+public class Patron {
+    private int id;
+    private String phoneNumber;
+    private String name;
+    public String getName() {
+        return name;
+    }
 
-    public void changeMyInfo() {
+    private String age;
 
+    private static int idGenerator = 0;
+
+    public Patron(String phoneNumber, String name, String age) {
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+
+        id = ++idGenerator;
+    }
+
+    public Patron changeMyInfo(String phoneNumber, String name, String age) {
+        this.age = age;
+        this.phoneNumber = phoneNumber;
+        this.name = name;
+
+        return this;
     }
 }
